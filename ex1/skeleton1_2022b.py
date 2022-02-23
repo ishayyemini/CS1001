@@ -7,25 +7,47 @@
 
 # Change the name of the file to include your ID number (hw1_ID.py).
 
+
 # Question 4a
 def replace(text, alphabet, new_alphabet):
-    pass
+    output = ""
+    for ch in text:
+        index = alphabet.find(ch)
+        if index >= 0:
+            output += new_alphabet[index]
+        else:
+            output += ch
+    return output
 
 
 # Question 4b
 def is_pal(text):
-    pass
+    stripped = text.replace(".", "").replace(" ", "")
+    rev = stripped[::-1]
+    return stripped == rev
 
 
 # Question 4c
 def num_different_letters(text):
     chars = "abcdefghijklmnopqrstuvwxyz"
-    pass
+    for ch in text:
+        if ch in chars:
+            chars = chars.replace(ch, "")
+    return 26 - len(chars)
 
 
 # Question 4d
 def most_frequent(text):
-    pass
+    counter = {}
+    freq = text[0]
+    for ch in text:
+        if ch in counter.keys():
+            counter[ch] += 1
+        else:
+            counter[ch] = 1
+        if counter[ch] > counter[freq]:
+            freq = ch
+    return freq
 
 
 # Question 4e
@@ -41,6 +63,7 @@ def calc(expression):
 ########
 # Tester
 ########
+
 
 def test():
     # testing Q4

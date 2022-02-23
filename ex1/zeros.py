@@ -32,7 +32,7 @@ def loop(num):
     return cnt
 
 
-values = [2 ** 100]
+values = [2**100]
 
 index = 1
 for zeros in [loop]:
