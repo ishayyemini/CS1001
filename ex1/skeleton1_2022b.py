@@ -64,7 +64,22 @@ def kth_order(text, k):
 
 # Question 5
 def calc(expression):
-    pass
+    split_exp = expression.split("'")[1:-1]
+    output = ""
+
+    if len(split_exp):
+        output += split_exp[0]
+        for i in range(round(len(split_exp[1:]) / 2)):
+            action = split_exp[2 * i + 1]
+            value = split_exp[2 * i + 2]
+            if action == "+":
+                output += value
+            elif action == "-":
+                output = output.replace(value, "")
+            elif action == "*":
+                output *= int(value)
+
+    return output
 
 
 ########
