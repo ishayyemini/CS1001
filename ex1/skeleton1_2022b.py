@@ -52,7 +52,14 @@ def most_frequent(text):
 
 # Question 4e
 def kth_order(text, k):
-    pass
+    counter = {}
+    for ch in text:
+        if ch in counter.keys():
+            counter[ch] += 1
+        else:
+            counter[ch] = 1
+    after_sort = sorted(counter.items(), key=lambda x: x[1], reverse=True)
+    return after_sort[k - 1][0]
 
 
 # Question 5
