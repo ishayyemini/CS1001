@@ -7,6 +7,11 @@
 
 # Change the name of the file to include your ID number (hw2_ID.py).
 
+import random
+
+import math
+
+
 ##############
 # QUESTION 1 #
 ##############
@@ -52,17 +57,24 @@ def semi_perfect_4(n):
 ##############
 # Q2a
 def coin():
-    pass  # replace with your code
+    return random.random() >= 0.5
 
 
 # Q2b
 def roll_dice(d):
-    pass  # replace with your code
+    return math.ceil(random.random() * d)
 
 
 # Q2c
 def roulette(bet_size, parity):
-    pass  # replace with your code
+    gains = 0
+    dice = roll_dice(37) - 1
+    desired = 0 if parity == "even" else 1
+
+    if dice != 0 and dice % 2 == desired:
+        gains = 2
+
+    return bet_size * gains
 
 
 # Q2d
