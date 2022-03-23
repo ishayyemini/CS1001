@@ -79,12 +79,19 @@ def roulette(bet_size, parity):
 
 # Q2d
 def roulette_repeat(bet_size, n):
-    pass  # replace with your code
+    money = bet_size
+    for _ in range(n):
+        money += roulette(bet_size, "even" if coin() else "odd") - bet_size
+    return money
 
 
 # Q2e
 def shuffle_list(lst):
-    pass  # replace with your code
+    new_lst = []
+    n = len(lst)
+    for i in range(n):
+        new_lst.append(lst.pop(roll_dice(n - i) - 1))
+    return new_lst
 
 
 ##############
