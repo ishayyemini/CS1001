@@ -130,22 +130,26 @@ def add(bin1, bin2):
 
 # Q3c
 def pow_two(binary, power):
-    pass  # replace with your code
+    return binary + "0" * power
 
 
 # Q3d
 def div_two(binary, power):
-    pass  # replace with your code
+    return binary[: len(binary) - power] if 0 <= power < len(binary) else "0"
 
 
 # Q3e
 def leq(bin1, bin2):
-    pass  # replace with your code
+    return len(bin1) < len(bin2) or (len(bin1) == len(bin2) and bin1 <= bin2)
 
 
 # Q3f
 def to_decimal(binary):
-    pass  # replace with your code
+    result = 0
+    for i in range(len(binary)):
+        if binary[-i - 1] == "1":
+            result += 2**i
+    return result
 
 
 ##############
