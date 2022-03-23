@@ -6,19 +6,26 @@
 # you can add new functions if needed.
 
 # Change the name of the file to include your ID number (hw2_ID.py).
-import random # loads python's random module in order to use random.random() in question 2
 
 ##############
 # QUESTION 1 #
 ##############
 #  Q1a
+
+
 def divisors(n):
-    pass  # replace with your code
+    return [i for i in range(1, n // 2 + 1) if n % i == 0]
 
 
 #  Q1b
 def perfect_numbers(n):
-    pass  # replace with your code
+    output = []
+    i = 1
+    while len(output) < n:
+        if i == sum(divisors(i)):
+            output.append(i)
+        i += 1
+    return output
 
 
 #  Q1c
@@ -29,6 +36,7 @@ def abundant_density(n):
 #  Q1e
 def semi_perfect_4(n):
     pass  # replace with your code
+
 
 ##############
 # QUESTION 2 #
@@ -120,13 +128,16 @@ def lychrel_sort(numbers, t):
 def calculate_grades_v1(grades):
     pass  # replace with your code
 
+
 # Q5b
 def calculate_grades_v2(grades, w, f):
     pass  # replace with your code
 
+
 # Q5c_i
 def calculate_grades_v3(grades, w):
     pass  # replace with your code
+
 
 # Q5c_ii
 def calculate_w(grades, target_average):
@@ -136,6 +147,7 @@ def calculate_w(grades, target_average):
 ##########
 # Tester #
 ##########
+
 
 def test():
     if divisors(6) != [1, 2, 3] or divisors(7) != [1]:
@@ -161,7 +173,9 @@ def test():
             break
 
     for i in range(10):
-        if (roulette(100, "even") not in {0, 200}) or (roulette(100, "odd") not in {0, 200}):
+        if (roulette(100, "even") not in {0, 200}) or (
+            roulette(100, "odd") not in {0, 200}
+        ):
             print("Error in Q2c")
             break
 
@@ -171,39 +185,49 @@ def test():
             print("Error in Q2e")
             break
 
-    if inc("0") != "1" or \
-            inc("1") != "10" or \
-            inc("101") != "110" or \
-            inc("111") != "1000" or \
-            inc(inc("111")) != "1001":
+    if (
+        inc("0") != "1"
+        or inc("1") != "10"
+        or inc("101") != "110"
+        or inc("111") != "1000"
+        or inc(inc("111")) != "1001"
+    ):
         print("Error in Q3a")
 
-    if add("0", "1") != "1" or \
-            add("1", "1") != "10" or \
-            add("110", "11") != "1001" or \
-            add("111", "111") != "1110":
+    if (
+        add("0", "1") != "1"
+        or add("1", "1") != "10"
+        or add("110", "11") != "1001"
+        or add("111", "111") != "1110"
+    ):
         print("Error in Q3b")
 
-    if pow_two("10", 2) != "1000" or \
-            pow_two("111", 3) != "111000" or \
-            pow_two("101", 1) != "1010":
+    if (
+        pow_two("10", 2) != "1000"
+        or pow_two("111", 3) != "111000"
+        or pow_two("101", 1) != "1010"
+    ):
         print("Error in Q3c")
 
-    if div_two("10", 1) != "1" or \
-            div_two("101", 1) != "10" or \
-            div_two("1010", 2) != "10" or \
-            div_two("101010", 3) != "101":
+    if (
+        div_two("10", 1) != "1"
+        or div_two("101", 1) != "10"
+        or div_two("1010", 2) != "10"
+        or div_two("101010", 3) != "101"
+    ):
         print("Error in Q3d")
 
-    if not leq("1010", "1010") or \
-            leq("1010", "0") or \
-            leq("1011", "1010"):
+    if not leq("1010", "1010") or leq("1010", "0") or leq("1011", "1010"):
         print("Error in Q3e")
 
     if lychrel_loops(28) != 2 or lychrel_loops(110) != 1:
         print("Error in Q4a")
 
-    if (not is_lychrel_suspect(28, 1)) or is_lychrel_suspect(28, 2) or is_lychrel_suspect(28, 3):
+    if (
+        (not is_lychrel_suspect(28, 1))
+        or is_lychrel_suspect(28, 2)
+        or is_lychrel_suspect(28, 3)
+    ):
         print("Error in Q4b")
 
     if lychrel_sort([165, 164, 28, 110, 196], 8) != [110, 28, 165, 164, 196]:
