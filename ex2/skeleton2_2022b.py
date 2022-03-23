@@ -99,16 +99,33 @@ def shuffle_list(lst):
 ##############
 # Q3a
 def inc(binary):
-    pass  # replace with your code
+    result = ""
+    for i in reversed(range(len(binary))):
+        if binary[i] == "0":
+            result = binary[:i] + "1" + result
+            break
+        else:
+            result = "0" + result
+    else:  # run if "for" didn't break, meaning all digits are "1"
+        result = "1" + result
+    return result
 
 
 # Q3b
-def pad_rev_lists(bin1, bin2):
-    pass  # replace with your code
-
-
 def add(bin1, bin2):
-    pass  # replace with your code
+    result = ""
+    carry = 0
+    for i in range(1, max(len(bin1), len(bin2)) + 1):
+        a = bin1[-i] if i <= len(bin1) else "0"
+        b = bin2[-i] if i <= len(bin2) else "0"
+
+        ones_cnt = [a, b, carry].count("1")
+        result = ("1" if (ones_cnt == 1 or ones_cnt == 3) else "0") + result
+        carry = "1" if ones_cnt > 1 else "0"
+
+    if carry == "1":
+        result = "1" + result
+    return result
 
 
 # Q3c
