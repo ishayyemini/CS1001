@@ -30,7 +30,16 @@ def perfect_numbers(n):
 
 #  Q1c
 def abundant_density(n):
-    pass  # replace with your code
+    abundant = 0
+    for i in range(1, n + 1):
+        div_sum = 0
+        for j in range(1, i // 2 + 1):
+            if i % j == 0:
+                div_sum += j
+            if div_sum > i:  # we can stop the loop if it's already bigger
+                abundant += 1
+                break
+    return abundant / n
 
 
 #  Q1e
