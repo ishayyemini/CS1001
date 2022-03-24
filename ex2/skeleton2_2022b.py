@@ -155,26 +155,30 @@ def to_decimal(binary):
 ##############
 # QUESTION 4 #
 ##############
-# Q4a
-def lychrel_loops(n):
+def lychrel_helper(n, until=-1):
     x = n
     rev = int(str(x)[::-1])
     i = 0
-    while x != rev:
+    while x != rev and (until < 0 or i <= until):
         x += rev
         rev = int(str(x)[::-1])
         i += 1
     return i
 
 
+# Q4a
+def lychrel_loops(n):
+    return lychrel_helper(n)
+
+
 # Q4b
 def is_lychrel_suspect(n, t):
-    pass  # replace with your code
+    return lychrel_helper(n, t) > t
 
 
 # Q4c
 def lychrel_sort(numbers, t):
-    pass  # replace with your code
+    return sorted(numbers, key=lambda x: lychrel_helper(x, t))
 
 
 ##############
@@ -308,3 +312,6 @@ def test():
     target_average = 93.025  # This is the average of [94.25, 91.8]
     if abs(calculate_w(grades, target_average) - 0.7) > 0.000001:
         print("Error in Q5c_ii")
+
+
+test()
