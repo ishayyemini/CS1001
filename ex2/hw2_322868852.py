@@ -186,22 +186,47 @@ def lychrel_sort(numbers, t):
 ##############
 # Q5a
 def calculate_grades_v1(grades):
-    pass  # replace with your code
+    output = []
+    for student in grades:
+        exam = student[0]
+        avg_hw = sum(list(student[1])) / 3
+        output.append(exam if exam >= avg_hw else exam * 0.9 + avg_hw * 0.1)
+    return output
 
 
 # Q5b
 def calculate_grades_v2(grades, w, f):
-    pass  # replace with your code
+    output = []
+    for student in grades:
+        exam = student[0]
+        avg_hw = sum(list(student[1])) / 3
+        output.append(f(exam) * w + avg_hw * (1 - w))
+    return output
 
 
 # Q5c_i
 def calculate_grades_v3(grades, w):
-    pass  # replace with your code
+    output = []
+    for student in grades:
+        exam = student[0]
+        avg_hw = sum(sorted(student[1], reverse=True)[:2]) / 2
+        output.append(exam * w + avg_hw * (1 - w))
+    return output
 
 
 # Q5c_ii
 def calculate_w(grades, target_average):
-    pass  # replace with your code
+    n = len(grades)
+    exam_sum, hw_avg_sum = 0, 0
+    for student in grades:
+        exam_sum += student[0]
+        hw_avg_sum += sum(sorted(student[1], reverse=True)[:2]) / 2
+
+    if exam_sum == hw_avg_sum:
+        w = 1 if exam_sum / n == target_average else -1
+    else:
+        w = (target_average * n - hw_avg_sum) / (exam_sum - hw_avg_sum)
+    return w if 0 <= w <= 1 else None
 
 
 ##########
