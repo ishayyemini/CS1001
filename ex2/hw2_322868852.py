@@ -16,8 +16,6 @@ import math
 # QUESTION 1 #
 ##############
 #  Q1a
-
-
 def divisors(n):
     return [i for i in range(1, n // 2 + 1) if n % i == 0]
 
