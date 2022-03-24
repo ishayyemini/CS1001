@@ -49,7 +49,41 @@ def abundant_density(n):
 
 #  Q1e
 def semi_perfect_4(n):
-    pass  # replace with your code
+    divs = divisors(n)
+    if len(divs) < 4:
+        return False
+    elif len(divs) == 4:
+        return sum(divs) == n
+
+    # We can simply check if n/2 is a sum of three divisors:
+    # Let's falsely assume that n/2 isn't in the sum. So, the possible sum
+    # is at most: sum <= n/3 + n/4 + n/5 + n/6 = (120+90+72+60)n/360 = 0.95n < n,
+    # and we got that there is no possible sum. By that same proof, n must
+    # be an even number to be semi prefect from the forth order.
+    if n % 2 != 0:
+        return False
+    tmp_divs = [divs[-2]]
+
+    for i in reversed(range(len(divs) - 2)):
+        if sum(tmp_divs) + divs[i] <= n / 2:
+            tmp_divs.append(divs[i])
+        elif len(tmp_divs) == 1:
+            # So, we now have one number, let's mark it as "A", and the new
+            # number is "B". We also know that A+B > n/2, so we must use "C"
+            # (the number immediately after "B"). But do we use A,C or B,C?
+            # if n-(B+C) exists in divs, we got a solution
+            # else, we adopt A,C and continue
+            if int(n / 2 - sum(divs[i - 1 : i + 1])) in divs:
+                return True
+            else:
+                tmp_divs.append(divs[i - 1])
+                i -= 1  # Skip the next iteration
+        if sum(tmp_divs) == n / 2:
+            if len(tmp_divs) == 3:
+                return True
+            else:
+                tmp_divs.pop()
+    return False
 
 
 ##############
