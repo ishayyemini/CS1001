@@ -130,7 +130,7 @@ def add(bin1, bin2):
 
 # Q3c
 def pow_two(binary, power):
-    return binary + "0" * power
+    return binary + "0" * power if binary != "0" else binary
 
 
 # Q3d
@@ -159,7 +159,7 @@ def lychrel_helper(n, until=-1):
     x = n
     rev = int(str(x)[::-1])
     i = 0
-    while x != rev and (until < 0 or i <= until):
+    while (x != rev or i < 1) and (until < 0 or i <= until):
         x += rev
         rev = int(str(x)[::-1])
         i += 1
