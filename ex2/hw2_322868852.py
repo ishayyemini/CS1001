@@ -312,6 +312,3 @@ def test():
     target_average = 93.025  # This is the average of [94.25, 91.8]
     if abs(calculate_w(grades, target_average) - 0.7) > 0.000001:
         print("Error in Q5c_ii")
-
-
-test()
