@@ -157,7 +157,14 @@ def to_decimal(binary):
 ##############
 # Q4a
 def lychrel_loops(n):
-    pass  # replace with your code
+    x = n
+    rev = int(str(x)[::-1])
+    i = 0
+    while x != rev:
+        x += rev
+        rev = int(str(x)[::-1])
+        i += 1
+    return i
 
 
 # Q4b
