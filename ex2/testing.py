@@ -58,8 +58,8 @@ def test_q1():
     assert perfect_numbers(4) == [6, 28, 496, 8128]
 
     # hei
-    # for num in semi_perfect_numbers:
-    #     assert semi_perfect_4(num)
+    for num in semi_perfect_numbers:
+        assert semi_perfect_4(num)
 
     print("you past the first question!")
 
