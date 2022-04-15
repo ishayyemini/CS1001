@@ -61,7 +61,23 @@ def approx_e(N):
 
 # Q4 - A
 def find(lst, s):
-    pass  # replace this with your code
+    left = 0
+    right = len(lst) - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+        if s == lst[mid]:
+            return mid
+        elif s < lst[mid]:  # Item cannot be above mid+1 as the list is almost sorted
+            if mid < right and s == lst[mid + 1]:
+                return mid + 1
+            right = mid - 1
+        else:
+            if mid > left and s == lst[mid - 1]:
+                return mid - 1
+            left = mid + 1
+
+    return None
 
 
 # Q4 - B
