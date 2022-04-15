@@ -25,12 +25,38 @@ def is_greater_equal(oct1, oct2):
 
 # Q3 - A
 def approx_root(x, eps):
-    pass  # replace this with your code
+    sequence = []
+    seq_sum = 0
+    last_elem = 1  # Last element in the shape of 1/(a1*...*an)
+    offset = 0  # Difference between last int in sequence and the next one to check
+
+    while (seq_sum + eps) ** 2 <= x:
+        try_int = (sequence[-1] if len(sequence) else 1) + offset
+        try_elem = last_elem * (1 / try_int)
+
+        if (seq_sum + try_elem) ** 2 <= x:
+            last_elem = try_elem
+            sequence.append(try_int)
+            seq_sum += last_elem
+            offset = 0
+        else:
+            offset += 1
+
+    return sequence, seq_sum
 
 
 # Q3 - B
+def almost_one():
+    total = 0
+    rounds = 0
+    while total < 1:
+        total += random.random()
+        rounds += 1
+    return rounds
+
+
 def approx_e(N):
-    pass  # replace this with your code
+    return sum(almost_one() for _ in range(N)) / N
 
 
 # Q4 - A
