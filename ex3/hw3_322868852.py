@@ -82,7 +82,16 @@ def find(lst, s):
 
 # Q4 - B
 def sort_from_almost(lst):
-    pass  # replace this with your code
+    i = 0
+    while i < (len(lst) - 1):
+        item = lst[i]
+        next_item = lst[i + 1]
+        if item > next_item:
+            lst[i] = next_item
+            lst[i + 1] = item
+            i += 1  # We can skip checking the next item as we just set it
+        i += 1
+    return lst
 
 
 # Q4 - C
