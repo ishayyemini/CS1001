@@ -9,6 +9,7 @@
 import math
 import random
 
+
 # Q2 - C
 def oct_to_fraction(octal):
     pass  # replace this with your code
@@ -142,13 +143,26 @@ def compute_median(q_l, q_g, k, n):  # noqa
 
 
 # Q5 - A
+chars = ["a", "b", "c", "d", "e"]
+values = {chars[i]: i for i in range(len(chars))}
+
+
 def string_to_int(s):
-    pass  # replace this with your code
+    k = len(s)  # noqa
+    output = 0
+    for i in range(k):
+        output += values[s[i]] * (5 ** (k - 1 - i))
+    return output
 
 
 # Q5 - B
-def int_to_string(k, n):
-    pass  # replace this with your code
+def int_to_string(k, n):  # noqa
+    output = ""
+    tmp_n = n
+    for i in range(k):
+        output = chars[tmp_n % 5] + output
+        tmp_n //= 5
+    return output
 
 
 # Q5 - C
