@@ -55,7 +55,7 @@ def almost_one():
     return rounds
 
 
-def approx_e(N):
+def approx_e(N):  # noqa
     return sum(almost_one() for _ in range(N)) / N
 
 
@@ -95,21 +95,21 @@ def sort_from_almost(lst):
 
 
 # Q4 - C
-def generate_queries(k=100, n=1000):
-    L = []
+def generate_queries(k=100, n=1000):  # noqa
+    L = []  # noqa
     for i in range(n):
         L.append(random.randint(0, k - 1))
 
-    def q_g(m):
+    def q_g(m):  # noqa
         size = 0
-        for i in range(n):
+        for i in range(n):  # noqa
             if L[i] > m:
                 size += 1
         return size
 
-    def q_l(m):
+    def q_l(m):  # noqa
         size = 0
-        for i in range(n):
+        for i in range(n):  # noqa
             if L[i] < m:
                 size += 1
         return size
