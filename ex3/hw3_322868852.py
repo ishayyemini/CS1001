@@ -122,8 +122,24 @@ n = 100
 q_l, q_g = generate_queries(k, n)
 
 
-def compute_median(q_l, q_g, k, n):
-    pass  # replace this with your code
+def compute_median(q_l, q_g, k, n):  # noqa
+    median = k // 2
+    lower = q_l(median)
+    greater = q_g(median)
+
+    step = k // n or 1  # Should never have step == 0
+    sign = 1 if lower <= greater else -1  # Whether median should be higher or lower
+    half_len = n // 2
+
+    while lower > half_len or greater > half_len:
+        if (greater - lower) * sign < 0:  # Then we've gone too far!
+            sign *= -1
+            step = step // 2 or 1
+        median += sign * step
+        lower = q_l(median)
+        greater = q_g(median)
+
+    return median
 
 
 # Q5 - A
