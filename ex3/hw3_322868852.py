@@ -166,13 +166,26 @@ def int_to_string(k, n):  # noqa
 
 
 # Q5 - C
-def sort_strings1(lst, k):
-    pass  # replace this with your code
+def sort_strings1(lst, k):  # noqa
+    output = []
+    count_list = [0 for _ in range(5**k)]
+    for s in lst:
+        count_list[string_to_int(s)] += 1
+    for i in range(5**k):
+        if count_list[i]:
+            output.extend([int_to_string(k, i)] * count_list[i])
+    return output
 
 
 # Q5 - E
-def sort_strings2(lst, k):
-    pass  # replace this with your code
+def sort_strings2(lst, k):  # noqa
+    output = []
+    for i in range(5**k):
+        lexical = int_to_string(k, i)
+        for s in lst:
+            if s == lexical:
+                output.append(lexical)
+    return output
 
 
 ##########
