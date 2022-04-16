@@ -127,11 +127,10 @@ def compute_median(q_l, q_g, k, n):  # noqa
     lower = q_l(median)
     greater = q_g(median)
 
-    step = k // n or 1  # Should never have step == 0
+    step = k // 4 or 1  # Should never have step == 0
     sign = 1 if lower <= greater else -1  # Whether median should be higher or lower
-    half_len = n // 2
 
-    while lower > half_len or greater > half_len:
+    while lower > n / 2 or greater > n / 2:
         if (greater - lower) * sign < 0:  # Then we've gone too far!
             sign *= -1
             step = step // 2 or 1
