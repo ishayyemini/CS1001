@@ -12,16 +12,35 @@ import random
 
 # Q2 - C
 def oct_to_fraction(octal):
-    pass  # replace this with your code
+    output = 0
+    for i in range(12):
+        output += int(octal[i]) * (8 ** (-1 - i))
+    return output
 
 
 # Q2 - D
-oct_to_float = lambda octal: None  # replace None with your code
+def calc_exp(exp):
+    output = 0
+    for i in range(3):
+        output += int(exp[i]) * (8 ** (3 - i - 1))
+    return output
+
+
+oct_to_float = lambda octal: int(octal) and (  # Doesn't calculate if zero
+    ((-1) ** int(octal[0]))
+    * (8 ** (calc_exp(octal[1:4]) - 255))
+    * (1 + 7 * oct_to_fraction(octal[4:]))
+)
 
 
 # Q2 - E
 def is_greater_equal(oct1, oct2):
-    pass  # replace this with your code
+    if oct1[0] == oct2[0] == "0":
+        return oct1 >= oct2
+    elif oct1[0] == oct2[0] == "1":
+        return oct2 >= oct1
+    else:
+        return oct1[0] < oct2[0]
 
 
 # Q3 - A
