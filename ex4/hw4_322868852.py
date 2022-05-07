@@ -60,6 +60,7 @@ def path_v3(A, s, t):  # noqa
 
     for i in range(len(A)):
         if A[s][i] == 1:
+            A[s][i] = 0
             if path_v3(A, i, t):
                 return True
     return False
