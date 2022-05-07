@@ -39,11 +39,12 @@ def legal_path(A, vertices):  # noqa
 
 
 # 2c
-def path_v2(A, s, t, k):
+def path_v2(A, s, t, k):  # noqa
     if k == 0:
         return s == t
 
-    # ADD YOUR CODE HERE #
+    if k == 1:
+        return A[s][t] == 1
 
     for i in range(len(A)):
         mid = k // 2
