@@ -76,8 +76,11 @@ path_v3_d = ([[0, 1, 0], [1, 0, 0], [0, 0, 0]], 0, 2)
 # Question 3 #
 ##############
 # 3a
-def can_create_once(s, L):
-    pass  # replace this with your code
+def can_create_once(s, L):  # noqa
+    if len(L) <= 1:
+        return (L[0] if L else 0) == abs(s)
+
+    return can_create_once(s - L[0], L[1:]) or can_create_once(s + L[0], L[1:])
 
 
 # 3b
