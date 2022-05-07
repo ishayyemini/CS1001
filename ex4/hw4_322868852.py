@@ -54,7 +54,7 @@ def path_v2(A, s, t, k):  # noqa
 
 
 # 2d # Fix this code without deleting any existing code #
-def path_v3(A, s, t):
+def path_v3(A, s, t):  # noqa
     if s == t:
         return True
 
@@ -65,10 +65,10 @@ def path_v3(A, s, t):
     return False
 
 
-path_v3_a = None  # Replace with an example of an input if the claim is true
-path_v3_b = None  # Replace with an example of an input if the claim is true
-path_v3_c = None  # Replace with an example of an input if the claim is true
-path_v3_d = None  # Replace with an example of an input if the claim is true
+path_v3_a = None
+path_v3_b = ([[0, 1, 1], [1, 0, 1], [1, 1, 0]], 0, 2)
+path_v3_c = None
+path_v3_d = ([[0, 1, 0], [1, 0, 0], [0, 0, 0]], 0, 2)
 
 
 ##############
