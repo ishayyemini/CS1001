@@ -31,7 +31,7 @@ def winnable_mem_rec(board, d):
 # Question 2 #
 ##############
 # 2a
-def legal_path(A, vertices):  # noqa
+def legal_path(A, vertices):
     for i in range(len(vertices) - 1):
         if not A[vertices[i]][vertices[i + 1]]:
             return False
@@ -39,7 +39,7 @@ def legal_path(A, vertices):  # noqa
 
 
 # 2c
-def path_v2(A, s, t, k):  # noqa
+def path_v2(A, s, t, k):
     if k == 0:
         return s == t
 
@@ -54,7 +54,7 @@ def path_v2(A, s, t, k):  # noqa
 
 
 # 2d # Fix this code without deleting any existing code #
-def path_v3(A, s, t):  # noqa
+def path_v3(A, s, t):
     if s == t:
         return True
 
@@ -76,7 +76,7 @@ path_v3_d = ([[0, 1, 0], [1, 0, 0], [0, 0, 0]], 0, 2)
 # Question 3 #
 ##############
 # 3a
-def can_create_once(s, L):  # noqa
+def can_create_once(s, L):
     if len(L) <= 1:
         return (L[0] if L else 0) == abs(s)
 
@@ -85,12 +85,32 @@ def can_create_once(s, L):  # noqa
 
 # 3b
 def can_create_twice(s, L):
-    pass  # replace this with your code
+    if len(L) <= 1:
+        return (L[0] if L else 0) == abs(s)
+
+    return (
+        can_create_twice(s, L[1:])
+        or can_create_twice(s - L[0], L[1:])
+        or can_create_twice(s + L[0], L[1:])
+        or can_create_twice(s - (2 * L[0]), L[1:])
+        or can_create_twice(s + (2 * L[0]), L[1:])
+    )
 
 
 # 3c
+def calc(lst):
+    return eval("".join(map(str, lst)))
+
+
 def valid_braces_placement(s, L):
-    pass  # replace this with your code
+    if len(L) == 1:
+        return L[0] == s
+
+    for i in range(0, len(L) - 2, 2):
+        if valid_braces_placement(s, L[0:i] + [calc(L[i : i + 3])] + L[i + 3 :]):
+            return True
+
+    return False
 
 
 ##############
