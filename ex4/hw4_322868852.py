@@ -148,7 +148,15 @@ def valid_braces_placement(s, L):
 ##############
 # 4a
 def grid_escape1(B):
-    pass  # replace this with your code
+    if len(B) == 0 or B[0][0] == 0:
+        return False
+    if len(B) == len(B[0]) == 1:
+        return True
+
+    steps = B[0][0]
+    move_up = B[steps:]
+    move_left = list(map(lambda row: row[steps:], B)) if len(B[0][steps:]) else []
+    return grid_escape1(move_up) or grid_escape1(move_left)
 
 
 # 4b
