@@ -6,7 +6,6 @@
 # but you may NOT change the signature of the existing ones.
 
 # Change the name of the file to include your ID number (hw4_ID.py).
-import math
 
 
 ##############
@@ -14,7 +13,20 @@ import math
 ##############
 # 1b
 def change_v2(amount, coins):
-    pass  # replace with your code
+    if not coins:
+        return []
+
+    def change_v2_insidious(path, opt, used):
+        if not opt or sum(path) >= amount:
+            if sum(path) == amount:
+                used.append(path)
+            return used
+
+        if sum(path + [opt[0]]) <= amount:  # Then we can try with this coin
+            change_v2_insidious(path + [opt[0]], opt, used)
+        return change_v2_insidious(path, opt[1:], used)
+
+    return change_v2_insidious([], coins, [])
 
 
 # 1c_ii
