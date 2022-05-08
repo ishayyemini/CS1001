@@ -36,7 +36,25 @@ def winnable_mem(board):
 
 
 def winnable_mem_rec(board, d):
-    pass  # replace this with your code
+    if sum(board) == 0:
+        return True
+
+    m = len(board)
+
+    for i in range(m):
+        for j in range(board[i]):
+            munched_board = board[0:i] + [min(board[k], j) for k in range(i, m)]
+
+            key = str(munched_board)
+            winnable = d.get(key)
+            if winnable is None:
+                winnable = winnable_mem_rec(munched_board, d)
+                d[key] = winnable
+
+            if not winnable:
+                return True
+
+    return False
 
 
 ##############
