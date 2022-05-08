@@ -161,7 +161,27 @@ def grid_escape1(B):
 
 # 4b
 def grid_escape2(B):
-    pass  # replace this with your code
+    n = len(B)
+
+    def explorer(x, y):
+        if x == y == n - 1:
+            return True
+        if not 0 <= x < n or not 0 <= y < n or B[x][y] == 0:
+            return False
+
+        steps = B[x][y]
+        B[x][y] = 0
+        possible = (
+            explorer(x + steps, y)
+            or explorer(x - steps, y)
+            or explorer(x, y + steps)
+            or explorer(x, y - steps)
+        )
+        B[x][y] = steps
+
+        return possible
+
+    return explorer(0, 0)
 
 
 ##########
