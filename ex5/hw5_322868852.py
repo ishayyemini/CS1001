@@ -347,14 +347,14 @@ class Polygon:
     def edges(self):
         output = []
         n = len(self.points_list)
-        prev, current = self.points_list[n - 1], self.point_head
+        before, current = self.points_list[n - 1], self.point_head
         for i in range(n):
-            next = current.next or self.point_head
-            angle = calculate_angle(prev.value, current.value, next.value)
+            after = current.next or self.point_head
+            angle = calculate_angle(before.value, current.value, after.value)
             if angle > 180:
                 angle -= 180
             output.append(angle)
-            prev, current = current, next
+            before, current = current, after
         return output
 
 
