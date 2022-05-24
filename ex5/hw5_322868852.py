@@ -11,6 +11,7 @@
 import random
 import math
 
+
 ##############
 # QUESTION 1 #
 ##############
@@ -218,18 +219,18 @@ class Point:
 
 # 3a_ii
 def find_optimal_angle(trees, alpha):
-    pass
+    sorted_trees = sorted(trees, key=lambda tree: tree.theta) * 2
+    active_tree = 0  # Tree to check distance from
+    best_tree = 0
 
+    for i in range(1, len(sorted_trees)):
+        distance = sorted_trees[active_tree].angle_between_points(sorted_trees[i])
+        if 0 < distance <= alpha:
+            best_tree = active_tree
+        else:
+            active_tree += 1
 
-test_trees = [
-    Point(2, 1),
-    Point(0, 3),
-    Point(-1, 3),
-    Point(-1, 1),
-    Point(-1, -1),
-    Point(0, -5),
-]
-print([tree.theta for tree in test_trees])
+    return sorted_trees[best_tree].theta
 
 
 class Node:
