@@ -56,23 +56,37 @@ class LogarithmicLinkedList:
         return None
 
 
+count = 0
+
+
 class LogarithmicLinkedList(LogarithmicLinkedList):
     # change the code of this method:
     def __contains__(self, val):
         # modify this implementation
         p = self.head
-        k = 1
-        while k != 0:
+        i = self.len - 1
+
+        while i > 0:
+            global count
+            count += 1
+            print(p.val)
             if p.val == val:
                 return True
-            k = 0
-            m = len(p.next_list)
-            while k < m and p.next_list[k].val <= val:
-                k += 1
-            if k > 0:
-                p = p.next_list[k - 1]
+            j = 0
+            while j < len(p.next_list) and p.next_list[j].val <= val:
+                j += 1
+
+            print(j, len(p.next_list))
+            p = p.next_list[max(0, j - 1)]
+            i -= 2 ** (j - 1)
         return False
 
+
+x = LogarithmicLinkedList()
+for n in range(50):
+    x.add(n)
+print(x.head)
+print(40 in x, count)
 
 ##############
 # QUESTION 2 #
