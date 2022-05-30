@@ -149,13 +149,13 @@ class FactoredInteger:
                 merged_factors.append(second)
                 j += 1
 
-        return FactoredInteger(merged_factors)
+        return FactoredInteger(merged_factors, verify=False)
 
     def __pow__(self, other):
         powered_factors = []
         for p in self.factors:
             powered_factors.extend([p for _ in range(other.number)])
-        return FactoredInteger(powered_factors)
+        return FactoredInteger(powered_factors, verify=False)
 
     # 2c
     def gcd(self, other):
@@ -174,7 +174,7 @@ class FactoredInteger:
             elif first > second:
                 j += 1
 
-        return FactoredInteger(common_factors)
+        return FactoredInteger(common_factors, verify=False)
 
     # 2d
     def lcm(self, others):
