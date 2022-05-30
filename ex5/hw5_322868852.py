@@ -525,7 +525,30 @@ class Binary_search_tree:
 
     # 4
     def is_q_balanced(self, q):
-        pass  # replace this with your code
+        if not self.root:
+            return False, -1
+
+        def is_q_balanced_req(tree):
+            if tree.left and tree.right:
+                left_ok, left_n = is_q_balanced_req(tree.left)
+                right_ok, right_n = is_q_balanced_req(tree.right)
+                this_balanced = min(left_n, right_n) / (left_n + right_n) >= q
+
+            else:
+                left_ok, left_n = (
+                    not (tree.left and (tree.left.left or tree.left.right)),
+                    1 if tree.left else 0,
+                )
+                right_ok, right_n = (
+                    not (tree.right and (tree.right.left or tree.right.right)),
+                    1 if tree.right else 0,
+                )
+                this_balanced = True
+
+            result = right_ok and left_ok and this_balanced
+            return result, ((right_n + left_n + 1) if result else -1)
+
+        return is_q_balanced_req(self.root)
 
 
 ############
