@@ -557,7 +557,12 @@ class Binary_search_tree:
 
 # 5a
 def prefix_suffix_overlap(lst, k):
-    pass  # replace this with your code
+    result = []
+    for i in range(len(lst)):
+        for j in range(len(lst)):
+            if i != j and lst[i][:k] == lst[j][-k:]:
+                result.append((i, j))
+    return result
 
 
 # 5c
@@ -582,12 +587,26 @@ class Dict:
 
     def find(self, key):
         """returns ALL values of key as a list, empty list if none"""
-        pass  # replace this with your code
+        result = []
+        i = self.hash_mod(key)
+        for j in self.table[i]:
+            if j[0] == key:
+                result.append(j[1])
+        return result
 
 
 # 5d
 def prefix_suffix_overlap_hash1(lst, k):
-    pass  # replace this with your code
+    result = []
+    d = Dict(len(lst))
+    for i in range(len(lst)):
+        d.insert(lst[i][:k], i)
+
+    for j in range(len(lst)):
+        for i in d.find(lst[j][-k:]):
+            if i != j:
+                result.append((i, j))
+    return result
 
 
 ##########
