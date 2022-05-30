@@ -8,8 +8,8 @@
 # Change the name of the file to include your ID number (hw5_ID.py).
 
 
-import random
 import math
+import random
 
 
 ##############
@@ -56,37 +56,31 @@ class LogarithmicLinkedList:
         return None
 
 
-count = 0
-
-
 class LogarithmicLinkedList(LogarithmicLinkedList):
-    # change the code of this method:
     def __contains__(self, val):
-        # modify this implementation
         p = self.head
-        i = self.len - 1
-
-        while i > 0:
-            global count
-            count += 1
-            print(p.val)
+        k = 1
+        while k != 0:
             if p.val == val:
                 return True
-            j = 0
-            while j < len(p.next_list) and p.next_list[j].val <= val:
-                j += 1
+            k = 0
+            m = len(p.next_list) - 1
 
-            print(j, len(p.next_list))
-            p = p.next_list[max(0, j - 1)]
-            i -= 2 ** (j - 1)
+            while k <= m:
+                mid = (k + m) // 2
+                mid_val = p.next_list[mid].val
+                if mid_val == val:
+                    return True
+                elif mid_val < val:
+                    k = mid + 1
+                elif mid_val > val:
+                    m = mid - 1
+
+            if k > 0:
+                p = p.next_list[k - 1]
+
         return False
 
-
-x = LogarithmicLinkedList()
-for n in range(50):
-    x.add(n)
-print(x.head)
-print(40 in x, count)
 
 ##############
 # QUESTION 2 #
