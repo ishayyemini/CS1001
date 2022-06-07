@@ -126,8 +126,9 @@ def gen3(g):
 # Q2d
 def gen4(rules_dict, start_var):
     k = 0
+    mem = dict()
     while True:
-        for word in generate_language(rules_dict, start_var, k):
+        for word in generate_language_rec(rules_dict, start_var, k, mem):
             yield word
         k += 1
 
