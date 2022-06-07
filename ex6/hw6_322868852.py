@@ -30,20 +30,25 @@ def generate_language_rec(rule_dict, var, k, mem):
 
     s = set()
     if k == 0:
-        # Add your code here #
+        if "" in rule_dict[var]:
+            s.add("")
         mem[(var, k)] = s
         return s
 
     if k == 1:
-        # Add your code here #
+        for x in rule_dict[var]:
+            if len(x) == 1:
+                s.add(x)
         mem[(var, k)] = s
         return s
 
     for var_rule in rule_dict[var]:
         if len(var_rule) == 2:
-            X, Y = var_rule[0], var_rule[1]
-            # for j in range(1, k):
-            # Add your code here #
+            X, Y = var_rule[0], var_rule[1]  # noqa
+            for j in range(1, k):
+                s1 = generate_language_rec(rule_dict, X, j, mem)
+                s2 = generate_language_rec(rule_dict, Y, k - j, mem)
+                s.update(sets_concat(s1, s2))
     mem[(var, k)] = s
     return s
 
