@@ -125,7 +125,11 @@ def gen3(g):
 
 # Q2d
 def gen4(rules_dict, start_var):
-    pass  # replace this with your code (or don't, if there does not exist such generator with finite delay)
+    k = 0
+    while True:
+        for word in generate_language(rules_dict, start_var, k):
+            yield word
+        k += 1
 
 
 # Q2e
