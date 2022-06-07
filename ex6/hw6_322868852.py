@@ -85,7 +85,27 @@ def what_rec(rule_dict, var, k, mem):
 
 # Q2a
 def gen1():
-    pass  # replace this with your code (or don't, if there does not exist such generator with finite delay)
+    def gen_by_sign(sign_a, sign_b):
+        k = 0
+        while True:
+            for i in range(k + 1):
+                a, b = sign_a * i, sign_b * (k - i)
+                if (a or sign_a == 1) and (
+                    b or sign_b == 1
+                ):  # Prevents getting double entries with zero
+                    yield sign_a * i, sign_b * (k - i)
+            k += 1
+
+    pos_pos = gen_by_sign(1, 1)
+    pos_neg = gen_by_sign(1, -1)
+    neg_pos = gen_by_sign(-1, 1)
+    neg_neg = gen_by_sign(-1, -1)
+
+    while True:
+        yield next(pos_pos)
+        yield next(pos_neg)
+        yield next(neg_pos)
+        yield next(neg_neg)
 
 
 # Q2b
