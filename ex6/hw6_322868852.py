@@ -208,19 +208,20 @@ def inter_to_bin_v2(intermediate, c, W=2**12 - 1, L=2**5 - 1):
     return "".join(ch for ch in bits)
 
 
-# Modify this code #
 def bin_to_inter_v2(bits, htree, W=2**12 - 1, L=2**5 - 1):
-    W_width = math.floor(math.log(W, 2)) + 1
-    L_width = math.floor(math.log(L, 2)) + 1
+    W_width = math.floor(math.log(W, 2)) + 1  # noqa
+    L_width = math.floor(math.log(L, 2)) + 1  # noqa
     inter = []
     n = len(bits)
     p = 0
     while p < n:
         if bits[p] == "0":
             p += 1
-            char = chr(int(bits[p : p + 7], 2))
-            inter.append(char)
-            p += 7
+            node = htree
+            while not isinstance(node, str):
+                node = node[int(bits[p])]
+                p += 1
+            inter.append(node)
         elif bits[p] == "1":
             p += 1
             m = int(bits[p : p + W_width], 2)
