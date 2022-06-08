@@ -169,14 +169,21 @@ def maxmatch(T, p, W=2**12 - 1, L=2**5 - 1):
     return m, k
 
 
-# Modify this code #
-def LZW_compress_v2(text, c, W=2**12 - 1, L=2**5 - 1):
+def LZW_compress_v2(text, c, W=2**12 - 1, L=2**5 - 1):  # noqa
+    w_bits = math.ceil(math.log2(W))
+    l_bits = math.ceil(math.log2(L))
+    compressed_bits = w_bits + l_bits + 1
+
     intermediate = []
     n = len(text)
     p = 0
     while p < n:
         m, k = maxmatch(text, p, W, L)
-        if k <= 2:
+        normal_bits = 0
+        for ch in text[p - m : p - m + k]:
+            normal_bits += len(c[ch]) + 1
+
+        if normal_bits <= compressed_bits:
             intermediate.append(text[p])
             p += 1
         else:
