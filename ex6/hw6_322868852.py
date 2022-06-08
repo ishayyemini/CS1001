@@ -192,15 +192,14 @@ def LZW_compress_v2(text, c, W=2**12 - 1, L=2**5 - 1):  # noqa
     return intermediate
 
 
-# Modify this code #
 def inter_to_bin_v2(intermediate, c, W=2**12 - 1, L=2**5 - 1):
-    W_width = math.floor(math.log(W, 2)) + 1
-    L_width = math.floor(math.log(L, 2)) + 1
+    W_width = math.floor(math.log(W, 2)) + 1  # noqa
+    L_width = math.floor(math.log(L, 2)) + 1  # noqa
     bits = []
     for elem in intermediate:
         if type(elem) == str:
             bits.append("0")
-            bits.append((bin(ord(elem))[2:]).zfill(7))
+            bits.append(c[elem])
         else:
             bits.append("1")
             m, k = elem
