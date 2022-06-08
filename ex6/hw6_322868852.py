@@ -252,7 +252,9 @@ def right_left(img):
     new_img = img.copy()
     new_mat = new_img.load()
 
-    # Add your code here #
+    for x in range(w):
+        for y in range(h):
+            new_mat[x, y] = mat[w - x - 1, y]
 
     return new_img
 
@@ -264,7 +266,10 @@ def what2(img):
     new_img = img.copy()
     new_mat = new_img.load()
 
-    # Add your code here #
+    for y in range(h):
+        sorted_line = sorted([mat[x, y] for x in range(w)])
+        for x in range(w):
+            new_mat[x, y] = sorted_line[x]
 
     return new_img
 
