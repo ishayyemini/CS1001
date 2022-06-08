@@ -6,7 +6,6 @@
 # but you may NOT change the signature of the existing ones.
 
 # Change the name of the file to include your ID number (hw6_ID.py).
-from PIL import Image  # need to install PIL/PILLOW
 import math
 
 
@@ -147,12 +146,13 @@ def gen5(g1, g2):
 
 # Q3b
 def repetition_threshold(W, L):
-    pass  # replace this with your code
+    w_bits = math.ceil(math.log2(W))
+    l_bits = math.ceil(math.log2(L))
+    bits_needed = w_bits + l_bits + 1
+    return bits_needed // 8 + 1
 
 
 # Q3c
-
-
 def maxmatch(T, p, W=2**12 - 1, L=2**5 - 1):
     assert isinstance(T, str)
     n = len(T)
