@@ -115,12 +115,19 @@ def gen1():
 
 # Q2b
 def gen2(g):
-    pass  # replace this with your code (or don't, if there does not exist such generator with finite delay)
+    s = 0
+    while True:
+        s += next(g)
+        yield s
 
 
 # Q2c
 def gen3(g):
-    pass  # replace this with your code (or don't, if there does not exist such generator with finite delay)
+    k = next(g)
+    while True:
+        if k > 0:
+            yield k
+        k = next(g)
 
 
 # Q2d
